@@ -153,10 +153,13 @@ while running:
     hits = pygame.sprite.spritecollide(player,mobs,False)
     if hits:
         running = False
-    # draw / reorder
+
+    # draw / render
     screen.fill(black)
     all_sprites.draw(screen)
 
     pygame.display.flip() # after drawing everything
 
-pygame.QUIT()
+pygame.display.quit()
+pygame.quit()
+exit()
