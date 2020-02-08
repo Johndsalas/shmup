@@ -8,7 +8,7 @@ img_dir =path.join(path.dirname(__file__),'img')
 
 width = 480
 height = 600
-fps = 60
+fps = 30
 
 # define colors
 white = (255,255,255)
@@ -146,8 +146,15 @@ while running:
     # update
     all_sprites.update()
 
-    # check to see if a bullet has hit a mob
+    # check to see if a bullet has hit a mob. True = corresponding sprite deleted if hit
     hits = pygame.sprite.groupcollide(mobs,bullets,True,True)
+    
+    # respawn hit mobs
+    for hit in hits:
+        m = Mob()
+        all_sprites.add(m)
+        mobs.add(m)
+
 
     # check to see if a mob hit the player
     hits = pygame.sprite.spritecollide(player,mobs,False)
